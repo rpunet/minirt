@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/04 01:32:38 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/04 21:32:09 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ void	read_resolution(char **line, t_scene *scene)
 
 void	read_ambient(char **line, t_scene *scene)
 {
-	scene->res.y = 0;						// pruebaaaaa
-	if (*line[0] == 'A')
-	//	ft_printf("AAAAAAAAAA");
+	if (scene->amb.declared)
+		exit_error_msg(AMB_DECLARED);
+	scene->amb.declared = 1;
+	(*line) += ELEM_LEN;
+	scene->amb.light = get_double(line);
+	if (scene->amb.light < 0.0 || scene->amb.light > 1.0)
+		exit_error_msg(SCENE_FORMAT_ERR);
+	scene->amb.color = get_color_vec(line);
 	return ;
 }
 

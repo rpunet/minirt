@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 22:04:53 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/04 01:29:17 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/04 20:59:28 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_scene_filename(char const *file)
 
 void	wrong_args_msg(void)
 {
-	ft_printf("error: wrong arguments\n\n");
+	ft_printf("error: wrong arguments\n");
 	ft_printf("arguments usage: ./miniRT <scene.rt> [--save]\n\n");
 	ft_printf("options:\n  --save   save rendered image to bmp\n");
 	exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/04 01:29:31 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/04 20:59:26 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_errmsg	g_error[] =
 	{OPT_ERR, "Invalid option\n\noptions:\n  --save   save rendered image to bmp\n"},
 	{SCENE_FORMAT_ERR, "Invalid scene file format\n"},
 	{RES_DECLARED, "Invalid scene: Resolution must be declared only once"},
+	{AMB_DECLARED, "Invalid scene: Ambient light must be declared only once"},
 	{DEFAULT_ERR, "Error\n"}
 };
 

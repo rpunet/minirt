@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:34:45 by user42            #+#    #+#             */
-/*   Updated: 2020/10/03 23:41:16 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/04 21:34:35 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+double				decimal_part(const char *str);
+double				ft_atod(const char *str);
 int					ft_isblank(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 void				ft_swap(int *a, int *b);
