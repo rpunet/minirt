@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 01:13:49 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 02:10:21 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/07 21:39:02 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	skip_char(char **str, int c)
 		(*str)++;
 }
 
-int		get_int(char **line)
+int		get_int(char **line, t_scene *scene)
 {
 	int	a;
 
@@ -42,11 +42,11 @@ int		get_int(char **line)
 		skip_digits(line);
 	}
 	else
-		exit_error_msg(SCENE_FORMAT_ERR);
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
 	return (a);
 }
 
-double	get_double(char **line)
+double	get_double(char **line, t_scene *scene)
 {
 	double	a;
 
@@ -60,39 +60,39 @@ double	get_double(char **line)
 		skip_digits(line);
 	}
 	else
-		exit_error_msg(SCENE_FORMAT_ERR);
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
 	return (a);
 }
 
-t_color	get_color_vec3(char **line)
+t_color	get_color_vec3(char **line, t_scene *scene)
 {
 	t_color	vec3;
 
 	skip_blanks(line);
-	vec3.r = get_int(line);
+	vec3.r = get_int(line, scene);
 	skip_blanks(line);
 	skip_char(line, ',');
-	vec3.g = get_int(line);
+	vec3.g = get_int(line, scene);
 	skip_blanks(line);
 	skip_char(line, ',');
-	vec3.b = get_int(line);
+	vec3.b = get_int(line, scene);
 	if ((vec3.r < 0 || vec3.r > 255) || (vec3.g < 0 || vec3.g > 255) || (vec3.b < 0 || vec3.b > 255))
-		exit_error_msg(SCENE_FORMAT_ERR);
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
 	return (vec3);
 }
 
-t_vec3	get_vec3(char **line)
+t_vec3	get_vec3(char **line, t_scene *scene)
 {
 	t_vec3	vec3;
 
 	skip_blanks(line);
-	vec3.x = get_double(line);
+	vec3.x = get_double(line,scene);
 	skip_blanks(line);
 	skip_char(line, ',');
-	vec3.y = get_double(line);
+	vec3.y = get_double(line,scene);
 	skip_blanks(line);
 	skip_char(line, ',');
-	vec3.z = get_double(line);
+	vec3.z = get_double(line,scene);
 
 	return (vec3);
 }

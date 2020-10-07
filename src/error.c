@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/04 20:59:26 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/07 20:59:07 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ t_errmsg	g_error[] =
 	{DEFAULT_ERR, "Error\n"}
 };
 
-void	exit_error_msg(t_error id)
+void	exit_error_msg(t_error id, t_scene *scene)
 {
+	scene_quit(scene);
 	ft_printf("Error: %s\n", g_error[id].msg);
 	exit(EXIT_FAILURE);
 }
