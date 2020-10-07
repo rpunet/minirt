@@ -6,7 +6,7 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/01 19:51:56 by rpunet            #+#    #+#              #
-#    Updated: 2020/10/04 01:14:20 by rpunet           ###   ########.fr        #
+#    Updated: 2020/10/07 01:10:56 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT_DIR	= libft/
 
 LIBFT_A		= libft/libft.a
 
-SRC_FILES	= main.c check_args.c load_scene.c load_utils.c error.c
+SRC_FILES	= main.c check_args.c read_scene.c load_utils.c error.c
 
 SRC_DIR		= src/
 
