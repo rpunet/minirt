@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 01:07:16 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/07 13:51:35 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	scene_init(t_scene *scene)
 	scene->amb.declared = 0;
 	scene->cams = NULL;
 	scene->cam_count = 0;
+	scene->lights = NULL;
 }
 
 int		main(int argc, char **argv)
@@ -50,6 +51,13 @@ int		main(int argc, char **argv)
 		printf("%f\n", scene.cams->cam->fov);
 		printf("%d\n", scene.cam_count);
 		scene.cams = scene.cams->next;
+	}
+	while (scene.lights)
+	{
+		printf("%f\n", scene.lights->light->pos.y);
+		printf("%f\n", scene.lights->light->lum);
+		printf("%d\n", scene.lights->light->color.g);
+		scene.lights = scene.lights->next;
 	}
 	return (0);
 }

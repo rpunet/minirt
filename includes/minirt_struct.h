@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 01:34:35 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/07 13:44:08 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ typedef struct s_lstcam
 	struct s_lstcam	*next;
 }				t_lstcam;
 
+typedef struct	s_light
+{
+	t_vec3	pos;
+	double	lum;
+	t_color	color;
+}				t_light;
+
+typedef struct	s_lstlight
+{
+	t_light				*light;
+	struct s_lstlight	*next;
+}				t_lstlight;
 
 typedef struct	s_scene
 {
@@ -78,6 +90,7 @@ typedef struct	s_scene
 	t_amb		amb;
 	t_lstcam 	*cams;
 	int			cam_count;
+	t_lstlight	*lights;
 }				t_scene;
 
 typedef struct	s_elemtype

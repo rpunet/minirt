@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 02:07:55 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/07 13:47:34 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_elemtype	g_elemtype[] =
 {
 	{"R", 1, &read_resolution},
 	{"A", 1, &read_ambient},
-	{"c", 1, &read_camera}
+	{"c", 1, &read_camera},
+	{"l", 1, &read_light}
 };
 
 void	read_resolution(char **line, t_scene *scene)
@@ -71,7 +72,7 @@ void	lstcam_append(t_lstcam **cams, t_lstcam *new_cam)
 	last->next = new_cam;
 }
 
-t_cam	*new_camera(char **line)
+t_cam	*create_camera(char **line)
 {
 
 	t_cam	*cam;
@@ -94,11 +95,66 @@ void	read_camera(char **line, t_scene *scene)
 	t_lstcam	*new_cam;
 
 	*line += ELEM_LEN;
-	cam = new_camera(line);
+	cam = create_camera(line);
 	new_cam = lstcam_new(cam);
 	lstcam_append(&scene->cams, new_cam);
 	scene->cam_count += 1;
 	return ;
+}
+
+t_light	*create_light(char **line)
+{
+	t_light	*light;
+
+	if (!(light = malloc(sizeof(t_light))))
+		exit_error_msg(DEFAULT_ERR);
+	light->pos = get_vec3(line);
+	light->lum = get_double(line);
+	if (light->lum < 0.0 || light->lum > 1.0)
+		exit_error_msg(SCENE_FORMAT_ERR);
+	light->color = get_color_vec3(line);
+	return (light);
+}
+
+t_lstlight	*lstlight_new(t_light *light)
+{
+	t_lstlight	*new;
+
+	if (!(new = malloc(sizeof(t_lstlight))))
+		exit_error_msg(DEFAULT_ERR);
+	new->light = light;
+	new->next = NULL;
+	return (new);
+}
+
+void	lstlight_append(t_lstlight **lights, t_lstlight *new_light)
+{
+	t_lstlight	*last;
+
+	if (!lights || !new_light)
+		return ;
+	if (!*lights)
+	{
+		*lights = new_light;
+		return;
+	}
+	last = *lights;
+	while (last->next)
+		last = last->next;
+	last->next = new_light;
+}
+
+void	read_light(char **line, t_scene *scene)
+{
+	t_light		*light;
+	t_lstlight	*new_light;
+
+	*line += ELEM_LEN;
+	light = create_light(line);
+	new_light = lstlight_new(light);
+	lstlight_append(&scene->lights, new_light);
+	return ;
+
 }
 
 void	read_element(char **line, t_scene *scene)
