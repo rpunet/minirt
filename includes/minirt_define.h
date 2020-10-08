@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 21:44:39 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 02:16:51 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SCENE_EXT	".rt"
 # define EXT_LEN	3
-# define SCENE_ELEMENTS 4   // hay 9 en total
+# define SCENE_ELEMENTS 5   // hay 9 en total
 # define ELEM_LEN 1
 # define ELEM_OBJ_LEN 2
 # define EMPTY_LINE_GNL '\0'
@@ -39,6 +39,8 @@ void	delete_cameras(t_lstcam **cams);
 void	read_light(char **line, t_scene *scene);
 t_light	*create_light(char **line, t_scene *scene);
 void	delete_lights(t_lstlight **lights);
+void	read_sphere(char **line, t_scene *scene);
+t_sphere	*create_sphere(char **line, t_scene *scene);
 void	scene_quit(t_scene *scene);
 
 int		get_int(char **line, t_scene *scene);
@@ -56,7 +58,8 @@ t_lstcam	*lstcam_new(t_cam *cam);
 void	lstcam_append(t_lstcam **cams, t_lstcam *new_cam);
 t_lstlight	*lstlight_new(t_light *light);
 void	lstlight_append(t_lstlight **lights, t_lstlight *new_light);
-
+t_lstobj	*lstobj_new(void *obj, t_objs obj_name);
+void	lstobj_append(t_lstobj **objs, t_lstobj *new_obj);
 
 
 void	ft_prueba_printf(t_scene scene);

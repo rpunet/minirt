@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 21:03:04 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 02:33:27 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void	scene_init(t_scene *scene)
 	scene->cams = NULL;
 	scene->cam_count = 0;
 	scene->lights = NULL;
+	scene->objs = NULL;
 }
 
 void	ft_prueba_printf(t_scene scene)
 {
+	t_sphere	*sphere;
+
 	printf("%d\n", scene.res.x);
 	printf("%d\n", scene.res.y);
 
@@ -49,6 +52,14 @@ void	ft_prueba_printf(t_scene scene)
 		printf("%d\n", scene.lights->light->color.g);
 		scene.lights = scene.lights->next;
 	}
+	printf("\n\n\n");
+	sphere = scene.objs->obj;
+	while (scene.objs)
+	{
+		printf("%f,%f,%f    %f      %d,%d,%d\n", sphere->centre.x, sphere->centre.y, sphere->centre.z, sphere->radius, sphere->color.r, sphere->color.g, sphere->color.b);
+		scene.objs = scene.objs->next;
+	}
+	return ;
 }
 
 void	delete_cameras(t_lstcam **cams)
@@ -87,10 +98,27 @@ void	delete_lights(t_lstlight **lights)
 	*lights = NULL;
 }
 
+void	delete_objects(t_lstobj **objs)
+{
+	t_lstobj	*current;
+	t_lstobj	*node;
+
+	current = *objs;
+	while (current)
+	{
+		free(current->obj);
+		node = current;
+		current = current->next;
+		free(node);
+	}
+	*objs = NULL;
+}
+
 void	scene_quit(t_scene *scene)
 {
 	delete_cameras(&scene->cams);
 	delete_lights(&scene->lights);
+	delete_objects(&scene->objs);
 }
 
 int		main(int argc, char **argv)

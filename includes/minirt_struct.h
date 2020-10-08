@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 13:44:08 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 02:16:34 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,26 @@ typedef struct	s_lstlight
 	struct s_lstlight	*next;
 }				t_lstlight;
 
+typedef enum	e_objs
+{
+	SPHERE,
+}				t_objs;
+
+typedef struct	s_sphere
+{
+	t_vec3	centre;
+	double	radius;
+	t_color	color;
+}				t_sphere;
+
+typedef struct	s_lstobj
+{
+	t_objs			obj_name;
+	void			*obj;
+	struct s_lstobj	*next;
+}				t_lstobj;
+
+
 typedef struct	s_scene
 {
 	t_res		res;
@@ -91,6 +111,7 @@ typedef struct	s_scene
 	t_lstcam 	*cams;
 	int			cam_count;
 	t_lstlight	*lights;
+	t_lstobj	*objs;
 }				t_scene;
 
 typedef struct	s_elemtype

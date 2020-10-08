@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/07 21:46:50 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 02:16:47 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,62 @@ void	read_light(char **line, t_scene *scene)
 	if (!new_light)
 		exit_error_msg(DEFAULT_ERR, scene);
 	lstlight_append(&scene->lights, new_light);
+	return ;
+}
+
+t_sphere	*create_sphere(char **line, t_scene *scene)
+{
+	t_sphere	*sphere;
+
+	if (!(sphere = malloc(sizeof(t_sphere))))
+		exit_error_msg(DEFAULT_ERR, scene);
+	sphere->centre = get_vec3(line, scene);
+	sphere->radius = get_double(line, scene) / 2;
+	sphere->color = get_color_vec3(line, scene);
+	return (sphere);
+}
+
+t_lstobj	*lstobj_new(void *obj, t_objs obj_name)
+{
+	t_lstobj	*new;
+
+	if(!(new = malloc(sizeof(t_lstobj))))
+		return (NULL);
+
+	new->obj_name = obj_name;
+	new->obj = obj;
+	new->next = NULL;
+	return (new);
+}
+
+void	lstobj_append(t_lstobj **objs, t_lstobj *new_obj)
+{
+	t_lstobj	*last;
+
+	if (!objs || !new_obj)
+		return ;
+	if (!*objs)
+	{
+		*objs = new_obj;
+		return;
+	}
+	last = *objs;
+	while (last->next)
+		last = last->next;
+	last->next = new_obj;
+}
+
+void	read_sphere(char **line, t_scene *scene)
+{
+	t_sphere	*sphere;
+	t_lstobj	*new_obj;
+
+	*line += ELEM_OBJ_LEN;
+	sphere = create_sphere(line, scene);
+	new_obj = lstobj_new(sphere, SPHERE);
+	if(!new_obj)
+		exit_error_msg(DEFAULT_ERR, scene);
+	lstobj_append(&scene->objs, new_obj);
 	return ;
 }
 
