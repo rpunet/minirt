@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:33:27 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 14:22:23 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	scene_init(t_scene *scene)
 void	ft_prueba_printf(t_scene scene)
 {
 	t_sphere	*sphere;
+
 
 	printf("%d\n", scene.res.x);
 	printf("%d\n", scene.res.y);
@@ -130,6 +131,8 @@ int		main(int argc, char **argv)
 	check_args(argc, argv, &save_bmp, &scene);
 	scene_init(&scene);
 	read_scene(argv[1], &scene);
+
+
 
 	ft_prueba_printf(scene);
 //_____________--------------------__________________------------__________

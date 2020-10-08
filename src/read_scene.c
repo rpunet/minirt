@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:16:47 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 14:18:54 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_elemtype	g_elemtype[] =
 	{"A", 1, &read_ambient},
 	{"c", 1, &read_camera},
 	{"l", 1, &read_light},
-	{"sp", 2, &read_sphere}
+	{"sp", 2, &read_sphere},
+	{"pl", 2, &read_plane}
 };
 
 void	read_resolution(char **line, t_scene *scene)
@@ -179,7 +180,6 @@ t_lstobj	*lstobj_new(void *obj, t_objs obj_name)
 
 	if(!(new = malloc(sizeof(t_lstobj))))
 		return (NULL);
-
 	new->obj_name = obj_name;
 	new->obj = obj;
 	new->next = NULL;
@@ -212,6 +212,34 @@ void	read_sphere(char **line, t_scene *scene)
 	sphere = create_sphere(line, scene);
 	new_obj = lstobj_new(sphere, SPHERE);
 	if(!new_obj)
+		exit_error_msg(DEFAULT_ERR, scene);
+	lstobj_append(&scene->objs, new_obj);
+	return ;
+}
+
+t_plane	*create_plane(char **line, t_scene *scene)
+{
+	t_plane	*plane;
+
+	if (!(plane = malloc(sizeof(t_plane))))
+		exit_error_msg(DEFAULT_ERR, scene);
+	plane->point = get_vec3(line, scene);
+	plane->dir = get_vec3(line, scene);
+	if (range_vec3(plane->dir, -1, 1))
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
+	plane->color = get_color_vec3(line, scene);
+	return (plane);
+}
+
+void	read_plane(char **line, t_scene *scene)
+{
+	t_plane		*plane;
+	t_lstobj	*new_obj;
+
+	*line += ELEM_OBJ_LEN;
+	plane = create_plane(line, scene);
+	new_obj = lstobj_new(plane, PLANE);
+	if (!new_obj)
 		exit_error_msg(DEFAULT_ERR, scene);
 	lstobj_append(&scene->objs, new_obj);
 	return ;

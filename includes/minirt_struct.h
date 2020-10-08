@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:16:34 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 14:19:07 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct	s_lstlight
 typedef enum	e_objs
 {
 	SPHERE,
+	PLANE
 }				t_objs;
 
 typedef struct	s_sphere
@@ -95,6 +96,13 @@ typedef struct	s_sphere
 	double	radius;
 	t_color	color;
 }				t_sphere;
+
+typedef struct	s_plane
+{
+	t_vec3	point;
+	t_vec3	dir;
+	t_color	color;
+}				t_plane;
 
 typedef struct	s_lstobj
 {

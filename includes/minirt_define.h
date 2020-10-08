@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:16:51 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/08 14:19:24 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SCENE_EXT	".rt"
 # define EXT_LEN	3
-# define SCENE_ELEMENTS 5   // hay 9 en total
+# define SCENE_ELEMENTS 6   // hay 9 en total
 # define ELEM_LEN 1
 # define ELEM_OBJ_LEN 2
 # define EMPTY_LINE_GNL '\0'
@@ -41,6 +41,8 @@ t_light	*create_light(char **line, t_scene *scene);
 void	delete_lights(t_lstlight **lights);
 void	read_sphere(char **line, t_scene *scene);
 t_sphere	*create_sphere(char **line, t_scene *scene);
+void	read_plane(char **line, t_scene *scene);
+t_plane	*create_plane(char **line, t_scene *scene);
 void	scene_quit(t_scene *scene);
 
 int		get_int(char **line, t_scene *scene);
