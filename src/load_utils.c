@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 01:13:49 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:16:39 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/09 01:43:04 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_color	get_color_vec3(char **line, t_scene *scene)
 	skip_char(line, ',');
 	vec3.b = get_int(line, scene);
 	if ((vec3.r < 0 || vec3.r > 255) || (vec3.g < 0 || vec3.g > 255) || (vec3.b < 0 || vec3.b > 255))
-		exit_error_msg(SCENE_FORMAT_ERR, scene);
+		exit_error_msg(RGB_RANGE_ERR, scene);
 	return (vec3);
 }
 

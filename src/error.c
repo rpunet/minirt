@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 02:16:34 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/09 01:48:21 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ t_errmsg	g_error[] =
 	{SCENE_FILENAME_ERR, "Invalid scene file. Use an appropiate '.rt' file\n"},
 	{OPT_ERR, "Invalid option\n\noptions:\n  --save   save rendered image to bmp\n"},
 	{SCENE_FORMAT_ERR, "Invalid scene file format\n"},
-	{RES_DECLARED, "Invalid scene: Resolution must be declared only once"},
-	{AMB_DECLARED, "Invalid scene: Ambient light must be declared only once"},
+	{RES_DECLARED, "Invalid scene: Resolution must be declared only once\n"},
+	{AMB_DECLARED, "Invalid scene: Ambient light must be declared only once\n"},
+	{VALUE_RANGE_ERR, "Invalid scene: ratio value must be in range [0,1]\n"},
+	{RGB_RANGE_ERR, "Invalid scene: RGB color must be in range [0-255]\n"},
+	{VEC_RANGE_ERR, "Invalid scene: vector values must be in range [-1,1]\n"},
+	{FOV_RANGE_ERR, "Invalid scene: FOV value must be in range [0,180]\n"},
 	{DEFAULT_ERR, "Error\n"}
 };
 

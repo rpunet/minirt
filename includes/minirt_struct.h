@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/08 14:19:07 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/09 02:00:50 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ typedef enum	e_error
 	SCENE_FORMAT_ERR,
 	RES_DECLARED,
 	AMB_DECLARED,
+	VALUE_RANGE_ERR,
+	RGB_RANGE_ERR,
+	VEC_RANGE_ERR,
+	FOV_RANGE_ERR,
 	DEFAULT_ERR
 }				t_error;
 
@@ -45,8 +49,8 @@ typedef struct	s_errmsg
 
 typedef struct	s_res
 {
-	int	x;
-	int	y;
+	int	width;
+	int	height;
 	int	declared;
 }				t_res;
 
