@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 01:13:49 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:43:04 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 03:03:20 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ double	get_double(char **line, t_scene *scene)
 	double	a;
 
 	skip_blanks(line);
-	if (**line == '-' || ft_isdigit(**line))
+	if (**line == '-' || **line == '.' || ft_isdigit(**line))
 	{
 		a = ft_atod(*line);
 		skip_char(line, '-');
@@ -97,16 +97,16 @@ t_vec3	get_vec3(char **line, t_scene *scene)
 	return (vec3);
 }
 
-double	dot_product_vec3(t_vec3 v1, t_vec3 v2)
+double	dot_vec3(t_vec3 u, t_vec3 v)
 {
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
 void	normalize_vec3(t_vec3 v1)
 {
 	double	mod;
 
-	mod = sqrt(dot_product_vec3(v1, v1));			//  mod = sqrt(dir->x * dir->x + dir->y * dir->y + dir->z * dir->z);
+	mod = sqrt(dot_vec3(v1, v1));			//  mod = sqrt(dir->x * dir->x + dir->y * dir->y + dir->z * dir->z);
 	v1.x /= mod;
 	v1.y /= mod;
 	v1.z /= mod;
@@ -117,3 +117,7 @@ int		range_vec3(t_vec3 v1, double min, double max)
 	return (v1.x < min || v1.x > max || v1.y < min || v1.y > max || v1.z < min || v1.z > max);
 }
 
+int		ft_isnull_vec3(t_vec3 v1)
+{
+	return (v1.x == 0.0 && v1.y == 0.0 && v1.z == 0.0);
+}

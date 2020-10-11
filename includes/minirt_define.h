@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:18:40 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 02:33:54 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	read_resolution(char **line, t_scene *scene);
 void	read_ambient(char **line, t_scene *scene);
 void	read_camera(char **line, t_scene *scene);
 t_cam	*create_camera(char **line, t_scene *scene);
-void	delete_cameras(t_lstcam **cams);
+void	delete_cameras(t_cam **cams);
 void	read_light(char **line, t_scene *scene);
 t_light	*create_light(char **line, t_scene *scene);
-void	delete_lights(t_lstlight **lights);
+void	delete_lights(t_light **lights);
 void	read_sphere(char **line, t_scene *scene);
 t_sphere	*create_sphere(char **line, t_scene *scene);
 void	read_plane(char **line, t_scene *scene);
@@ -54,13 +54,19 @@ void	skip_blanks(char **str);
 
 t_color	get_color_vec3(char **line, t_scene *scene);
 t_vec3	get_vec3(char **line, t_scene *scene);
-double	dot_product_vec3(t_vec3 v1, t_vec3 v2);
+double	dot_vec3(t_vec3 u, t_vec3 v);
 void	normalize_vec3(t_vec3 v1);
 int		range_vec3(t_vec3 v1, double min, double max);
-t_lstcam	*lstcam_new(t_cam *cam);
-void	lstcam_append(t_lstcam **cams, t_lstcam *new_cam);
-t_lstlight	*lstlight_new(t_light *light);
-void	lstlight_append(t_lstlight **lights, t_lstlight *new_light);
+int		ft_isnull_vec3(t_vec3 v1);
+
+void	normalize(t_vec3 *v1);
+t_vec3	new_vec3(double x, double y, double z);
+t_vec3	cross_vec3(t_vec3 v1, t_vec3 v2);
+
+t_mat3x3	invert_mat3x3(t_mat3x3 m);
+
+void	append_camera(t_cam **cams, t_cam *new_cam);
+void	append_light(t_light **lights, t_light *new_light);
 t_lstobj	*lstobj_new(void *obj, t_objs obj_name);
 void	lstobj_append(t_lstobj **objs, t_lstobj *new_obj);
 

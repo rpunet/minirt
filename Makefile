@@ -6,7 +6,7 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/01 19:51:56 by rpunet            #+#    #+#              #
-#    Updated: 2020/10/09 02:45:00 by rpunet           ###   ########.fr        #
+#    Updated: 2020/10/11 02:30:08 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ LIBFT_DIR	= libft/
 
 LIBFT_A		= libft/libft.a
 
-SRC_FILES	= main.c scene.c check_args.c read_scene.c read_elements.c read_cameras.c read_lights.c read_sphere.c read_plane.c read_objects.c load_utils.c render_scene.c render_utils.c error.c
+SRC_FILES	= main.c scene.c check_args.c read_scene.c read_elements.c read_cameras.c read_lights.c read_sphere.c read_plane.c read_objects.c load_utils.c error.c
 
 SRC_DIR		= src/
 
-SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
+SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))#render_scene.c render_utils.c #
 
 GREEN		= \033[1;32m
 

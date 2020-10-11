@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 02:00:50 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 03:06:59 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum	e_error
 	VALUE_RANGE_ERR,
 	RGB_RANGE_ERR,
 	VEC_RANGE_ERR,
+	NULL_VEC_ERR,
 	FOV_RANGE_ERR,
 	DEFAULT_ERR
 }				t_error;
@@ -33,6 +34,17 @@ typedef struct	s_vec3
 	double	y;
 	double	z;
 }				t_vec3;
+/*
+[v1.x  v1.y  v1.z]
+[v2.x  v2.y  v1.2]
+[v3.x  v3.y  v1.3]
+*/
+typedef struct 	s_mat3x3
+{
+	t_vec3	v1;
+	t_vec3	v2;
+	t_vec3	v3;
+}				t_mat3x3;
 
 typedef struct	s_color
 {
@@ -40,6 +52,16 @@ typedef struct	s_color
 	int	g;
 	int	b;
 }				t_color;
+
+typedef struct	s_ray
+{
+	t_vec3	origin;
+	t_vec3	dir;
+	double	t;
+	t_color	color;
+	t_vec3	hit_p;
+	t_vec3	normal;
+}				t_ray;
 
 typedef struct	s_errmsg
 {
@@ -62,31 +84,22 @@ typedef struct	s_amb
 
 }				t_amb;
 
-typedef struct	s_cam
+typedef struct		s_cam
 {
-	t_vec3	pos;
-	t_vec3	dir;
-	double	fov;
-}				t_cam;
+	t_vec3			pos;
+	t_vec3			dir;
+	double			fov;
+	t_mat3x3		cam_to_world;
+	struct s_cam	*next;
+}					t_cam;
 
-typedef struct s_lstcam
+typedef struct		s_light
 {
-	t_cam			*cam;
-	struct s_lstcam	*next;
-}				t_lstcam;
-
-typedef struct	s_light
-{
-	t_vec3	pos;
-	double	lum;
-	t_color	color;
-}				t_light;
-
-typedef struct	s_lstlight
-{
-	t_light				*light;
-	struct s_lstlight	*next;
-}				t_lstlight;
+	t_vec3			pos;
+	double			lum;
+	t_color			color;
+	struct s_light	*next;
+}					t_light;
 
 typedef enum	e_objs
 {
@@ -118,13 +131,27 @@ typedef struct	s_lstobj
 
 typedef struct	s_scene
 {
+	void		*mlx;
+	void		*win;
 	t_res		res;
 	t_amb		amb;
-	t_lstcam 	*cams;
+	t_cam 		*cams;
 	int			cam_count;
-	t_lstlight	*lights;
+	t_light		*lights;
 	t_lstobj	*objs;
 }				t_scene;
+
+typedef struct 		s_img
+{
+	void			*img;
+	int				size_x;
+	int				size_y;
+	char			*address;
+	int				bbp;
+	int				endian;
+	int				size_line;
+	struct s_img	*next;
+}					t_img;
 
 typedef struct	s_elemtype
 {

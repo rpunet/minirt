@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:48:21 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 02:49:34 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_errmsg	g_error[] =
 	{VALUE_RANGE_ERR, "Invalid scene: ratio value must be in range [0,1]\n"},
 	{RGB_RANGE_ERR, "Invalid scene: RGB color must be in range [0-255]\n"},
 	{VEC_RANGE_ERR, "Invalid scene: vector values must be in range [-1,1]\n"},
+	{NULL_VEC_ERR, "Invalid scene: wrong vector\n"},
 	{FOV_RANGE_ERR, "Invalid scene: FOV value must be in range [0,180]\n"},
 	{DEFAULT_ERR, "Error\n"}
 };

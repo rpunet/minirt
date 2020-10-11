@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:28:02 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:28:38 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 02:34:16 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	scene_init(t_scene *scene)
 {
+	//scene->mlx = mlx_init();
+	scene->win = NULL;
 	scene->res.declared = 0;
 	scene->amb.declared = 0;
 	scene->cams = NULL;

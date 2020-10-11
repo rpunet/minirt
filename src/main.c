@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:28:41 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 02:46:36 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ void	ft_prueba_printf(t_scene scene)
 	t_sphere	*sphere;
 	t_plane		*plane;
 
-	printf("%d\n", scene.res.x);
-	printf("%d\n", scene.res.y);
+	printf("res x: %d\n", scene.res.width);
+	printf("res y: %d\n", scene.res.height);
 
-	printf("%f\n", scene.amb.light);
-	printf("%d\n", scene.amb.color.r);
-	printf("%d\n", scene.amb.color.g);
+	printf("amb: %f\n", scene.amb.light);
+	printf("color: %d, ", scene.amb.color.r);
+	printf("%d, ", scene.amb.color.g);
 	printf("%d\n", scene.amb.color.b);
 
 	while (scene.cams)
 	{
-		printf("%f\n", scene.cams->cam->pos.y);
-		printf("%f\n", scene.cams->cam->dir.z);
-		printf("%f\n", scene.cams->cam->fov);
-		printf("%d\n", scene.cam_count);
+		printf("cam pos: %f, ", scene.cams->pos.y);
+		printf("cam dir.z: %f, ", scene.cams->dir.z);
+		printf("cam fov: %f\n", scene.cams->fov);
+		printf("num cams: %d\n", scene.cam_count);
 		scene.cams = scene.cams->next;
 	}
 	while (scene.lights)
 	{
-		printf("%f\n", scene.lights->light->pos.y);
-		printf("%f\n", scene.lights->light->lum);
-		printf("%d\n", scene.lights->light->color.g);
+		printf("light pos.y: %f\n", scene.lights->pos.y);
+		printf("light lum: %f\n", scene.lights->lum);
+		printf("color gree: %d\n", scene.lights->color.g);
 		scene.lights = scene.lights->next;
 	}
 	printf("\n\n\n");
@@ -67,12 +67,11 @@ int		main(int argc, char **argv)
 	check_args(argc, argv, &save_bmp, &scene);
 	scene_init(&scene);
 	read_scene(argv[1], &scene);
+	//render_scene(&scene);
 
+//_____________--------------------__________________------------__________
 	ft_prueba_printf(scene);
 //_____________--------------------__________________------------__________
 	scene_quit(&scene);
-//	scene_lst_quit(&scene);
-//_____-----------------------_________________--------------------____________
-
 	return (0);
 }

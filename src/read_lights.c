@@ -6,26 +6,15 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:46:47 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:48:01 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/11 02:27:52 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_lstlight	*lstlight_new(t_light *light)
+void		append_light(t_light **lights, t_light *new_light)
 {
-	t_lstlight	*new;
-
-	if (!(new = malloc(sizeof(t_lstlight))))
-		return (NULL);
-	new->light = light;
-	new->next = NULL;
-	return (new);
-}
-
-void		lstlight_append(t_lstlight **lights, t_lstlight *new_light)
-{
-	t_lstlight	*last;
+	t_light	*last;
 
 	if (!lights || !new_light)
 		return ;
@@ -54,37 +43,33 @@ t_light		*create_light(char **line, t_scene *scene)
 	skip_blanks(line);
 	if (**line != EMPTY_LINE_GNL)
 		exit_error_msg(SCENE_FORMAT_ERR, scene);
+	light->next = NULL;
 	return (light);
 }
 
 void		read_light(char **line, t_scene *scene)
 {
-	t_light		*light;
-	t_lstlight	*new_light;
+	t_light		*new_light;
 
 	*line += ELEM_LEN;
-	light = create_light(line, scene);
-	new_light = lstlight_new(light);
-	if (!new_light)
-		exit_error_msg(DEFAULT_ERR, scene);
-	lstlight_append(&scene->lights, new_light);
+	new_light = create_light(line, scene);
+	append_light(&scene->lights, new_light);
 	return ;
 }
 
-void		delete_lights(t_lstlight **lights)
+void		delete_lights(t_light **lights)
 {
-	t_lstlight	*current;
-	t_lstlight	*node;
+	t_light	*current;
+	t_light	*node;
 
 	if (!lights || !*lights)
 		return ;
 	current = *lights;
 	while (current)
 	{
-		free(current->light);
-		node = current;
-		current = current->next;
-		free(node);
+		node = current->next;
+		free(current);
+		current = node;
 	}
 	*lights = NULL;
 }
