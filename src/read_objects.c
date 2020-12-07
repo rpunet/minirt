@@ -6,14 +6,14 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:50:36 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 00:53:01 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/21 12:10:22 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 
-t_lstobj	*lstobj_new(void *obj, t_objs obj_name)
+t_lstobj	*new_lstobj(void *obj, t_objs obj_name)
 {
 	t_lstobj	*new;
 
@@ -25,7 +25,7 @@ t_lstobj	*lstobj_new(void *obj, t_objs obj_name)
 	return (new);
 }
 
-void		lstobj_append(t_lstobj **objs, t_lstobj *new_obj)
+void		add_lstobj(t_lstobj **objs, t_lstobj *new_obj)
 {
 	t_lstobj	*last;
 
@@ -42,7 +42,7 @@ void		lstobj_append(t_lstobj **objs, t_lstobj *new_obj)
 	last->next = new_obj;
 }
 
-void		delete_objects(t_lstobj **objs)
+void		delete_lstobjects(t_lstobj **objs)
 {
 	t_lstobj	*current;
 	t_lstobj	*node;

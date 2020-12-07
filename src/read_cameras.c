@@ -6,13 +6,13 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:45:51 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/11 02:55:30 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/21 12:10:17 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		append_camera(t_cam **cams, t_cam *new_cam)
+void		add_camera(t_cam **cams, t_cam *new_cam)
 {
 	t_cam	*last;
 
@@ -55,9 +55,9 @@ void		read_camera(char **line, t_scene *scene)
 {
 	t_cam		*new_cam;
 
-	*line += ELEM_LEN;
+	*line += 2;
 	new_cam = create_camera(line, scene);
-	append_camera(&scene->cams, new_cam);
+	add_camera(&scene->cams, new_cam);
 	scene->cam_count += 1;
 	return ;
 }

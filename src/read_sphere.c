@@ -6,11 +6,28 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:47:12 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/09 01:47:59 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/03 21:26:34 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void		add_sphere(t_sphere **spheres, t_sphere *new_sphere)
+{
+	t_sphere	*last;
+
+	if (!spheres || !new_sphere)
+		return;
+	if (!*spheres)
+	{
+		*spheres = new_sphere;
+		return;
+	}
+	last = *spheres;
+	while (last->next)
+		last = last->next;
+	last->next = new_sphere;
+}
 
 t_sphere	*create_sphere(char **line, t_scene *scene)
 {
@@ -24,19 +41,33 @@ t_sphere	*create_sphere(char **line, t_scene *scene)
 	skip_blanks(line);
 	if (**line != EMPTY_LINE_GNL)
 		exit_error_msg(SCENE_FORMAT_ERR, scene);
+	sphere->next = NULL;
 	return (sphere);
 }
 
 void		read_sphere(char **line, t_scene *scene)
 {
-	t_sphere	*sphere;
-	t_lstobj	*new_obj;
+	t_sphere	*new_sphere;
 
 	*line += ELEM_OBJ_LEN;
-	sphere = create_sphere(line, scene);
-	new_obj = lstobj_new(sphere, SPHERE);
-	if(!new_obj)
-		exit_error_msg(DEFAULT_ERR, scene);
-	lstobj_append(&scene->objs, new_obj);
+	new_sphere = create_sphere(line, scene);
+	add_sphere(&scene->spheres, new_sphere);
 	return ;
+}
+
+void		delete_spheres(t_sphere **spheres)
+{
+	t_sphere	*current;
+	t_sphere	*node;
+
+	if (!*spheres || !spheres)
+		return ;
+	current = *spheres;
+	while (current)
+	{
+		node = current->next;
+		free(current);
+		current = node;
+	}
+	*spheres = NULL;
 }

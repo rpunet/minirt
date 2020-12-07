@@ -6,13 +6,13 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:46:47 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/11 02:27:52 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/10/21 12:06:31 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		append_light(t_light **lights, t_light *new_light)
+void		add_light(t_light **lights, t_light *new_light)
 {
 	t_light	*last;
 
@@ -51,9 +51,9 @@ void		read_light(char **line, t_scene *scene)
 {
 	t_light		*new_light;
 
-	*line += ELEM_LEN;
+	*line += 2;
 	new_light = create_light(line, scene);
-	append_light(&scene->lights, new_light);
+	add_light(&scene->lights, new_light);
 	return ;
 }
 

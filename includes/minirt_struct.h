@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/11 03:06:59 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/07 13:38:45 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 typedef enum	e_error
 {
-	SCENE_FILENAME_ERR,
+	ARGS_ERR,
+	SCENE_FILE_ERR,
 	OPT_ERR,
 	SCENE_FORMAT_ERR,
 	RES_DECLARED,
@@ -48,9 +49,9 @@ typedef struct 	s_mat3x3
 
 typedef struct	s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	double	r;
+	double	g;
+	double	b;
 }				t_color;
 
 typedef struct	s_ray
@@ -59,15 +60,9 @@ typedef struct	s_ray
 	t_vec3	dir;
 	double	t;
 	t_color	color;
-	t_vec3	hit_p;
+	//t_vec3	hit_p;
 	t_vec3	normal;
 }				t_ray;
-
-typedef struct	s_errmsg
-{
-	t_error	id;
-	char	*msg;
-}				t_errmsg;
 
 typedef struct	s_res
 {
@@ -78,7 +73,7 @@ typedef struct	s_res
 
 typedef struct	s_amb
 {
-	double	light;
+	double	bright;
 	t_color	color;
 	int		declared;
 
@@ -107,30 +102,43 @@ typedef enum	e_objs
 	PLANE
 }				t_objs;
 
-typedef struct	s_sphere
+typedef struct		s_sphere
 {
-	t_vec3	centre;
-	double	radius;
-	t_color	color;
-}				t_sphere;
+	t_vec3			centre;
+	double			radius;
+	t_color			color;
+	struct s_sphere	*next;
+}					t_sphere;
 
-typedef struct	s_plane
+typedef struct		s_plane
 {
-	t_vec3	point;
-	t_vec3	dir;
-	t_color	color;
-}				t_plane;
+	t_vec3			point;
+	t_vec3			dir;
+	t_color			color;
+	struct s_plane	*next;
+}					t_plane;
 
-typedef struct	s_lstobj
+typedef struct	 s_hit
+{
+	t_vec3		point;
+	t_vec3		normal;
+	t_vec3		light;
+	t_ray		shadow_ray;
+	t_color		color;
+}				t_hit;
+
+
+/* typedef struct	s_lstobj
 {
 	t_objs			obj_name;
 	void			*obj;
 	struct s_lstobj	*next;
 }				t_lstobj;
-
+ */
 
 typedef struct	s_scene
 {
+	int			save_bmp;
 	void		*mlx;
 	void		*win;
 	t_res		res;
@@ -138,7 +146,9 @@ typedef struct	s_scene
 	t_cam 		*cams;
 	int			cam_count;
 	t_light		*lights;
-	t_lstobj	*objs;
+//	t_lstobj	*objs;
+	t_sphere	*spheres;
+	t_plane		*planes;
 }				t_scene;
 
 typedef struct 		s_img
@@ -148,17 +158,17 @@ typedef struct 		s_img
 	int				size_y;
 	char			*address;
 	int				bbp;
-	int				endian;
 	int				size_line;
+	int				endian;
 	struct s_img	*next;
 }					t_img;
 
-typedef struct	s_elemtype
-{
-	char	*type_id;
-	int		id_len;
-	void	(*read_func)(char **, t_scene *);   // aqui se podra hacer un typdef: typedef void (*read_func)(char *), para luego declarar read_func func; y llamar como g_elemtype.func
-}				t_elemtype;
+// typedef struct	s_elemtype
+// {
+// 	char	*type_id;
+// 	int		id_len;
+// 	void	(*read_func)(char **, t_scene *);   // aqui se podra hacer un typdef: typedef void (*read_func)(char *), para luego declarar read_func func; y llamar como g_elemtype.func
+// }				t_elemtype;
 
 
 

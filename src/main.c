@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/11 02:46:36 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:49:07 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	ft_prueba_printf(t_scene scene)
 {
-	t_sphere	*sphere;
-	t_plane		*plane;
+//	t_sphere	*sphere;
+//	t_plane		*plane;
 
 	printf("res x: %d\n", scene.res.width);
 	printf("res y: %d\n", scene.res.height);
 
-	printf("amb: %f\n", scene.amb.light);
-	printf("color: %d, ", scene.amb.color.r);
-	printf("%d, ", scene.amb.color.g);
-	printf("%d\n", scene.amb.color.b);
+	printf("amb: %f\n", scene.amb.bright);
+	printf("color: %f, ", scene.amb.color.r);
+	printf("%f, ", scene.amb.color.g);
+	printf("%f\n", scene.amb.color.b);
 
 	while (scene.cams)
 	{
@@ -37,11 +37,11 @@ void	ft_prueba_printf(t_scene scene)
 	{
 		printf("light pos.y: %f\n", scene.lights->pos.y);
 		printf("light lum: %f\n", scene.lights->lum);
-		printf("color gree: %d\n", scene.lights->color.g);
+		printf("color green: %f\n", scene.lights->color.g);
 		scene.lights = scene.lights->next;
 	}
 	printf("\n\n\n");
-	while (scene.objs)
+/* 	while (scene.objs)
 	{
 		if (scene.objs->obj_name == SPHERE)
 		{
@@ -54,23 +54,37 @@ void	ft_prueba_printf(t_scene scene)
 			printf("%f,%f,%f    %f,%f,%f      %d,%d,%d\n", plane->point.x, plane->point.y, plane->point.z, plane->dir.x, plane->dir.y, plane->dir.z, plane->color.r, plane->color.g, plane->color.b);
 		}
 		scene.objs = scene.objs->next;
-	}
+	} */
 	return ;
+}
+
+void	display_scene(t_scene *scene)
+{
+	t_img	img;
+
+	scene->win = mlx_new_window(scene->mlx, scene->res.width, scene->res.height, "miniRT");
+	img.img = mlx_new_image(scene->mlx, scene->res.width, scene->res.height);
+	img.address = mlx_get_data_addr(img.img, &img.bbp, &img.size_line, &img.endian);
+	render_scene(scene, &img);
+	mlx_clear_window(scene->mlx, scene->win);
+	mlx_put_image_to_window(scene->mlx, scene->win, img.img, 0, 0);
+	mlx_loop(scene->mlx);
 }
 
 int		main(int argc, char **argv)
 {
-	int		save_bmp;
 	t_scene	scene;
 
-	save_bmp = 0;
-	check_args(argc, argv, &save_bmp, &scene);
 	scene_init(&scene);
+	check_args(argc, argv, &scene);
 	read_scene(argv[1], &scene);
-	//render_scene(&scene);
+
+	display_scene(&scene);
+
+
 
 //_____________--------------------__________________------------__________
-	ft_prueba_printf(scene);
+//	ft_prueba_printf(scene);
 //_____________--------------------__________________------------__________
 	scene_quit(&scene);
 	return (0);
