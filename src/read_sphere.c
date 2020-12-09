@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:47:12 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/03 21:26:34 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/08 03:04:58 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void		add_sphere(t_sphere **spheres, t_sphere *new_sphere)
 	t_sphere	*last;
 
 	if (!spheres || !new_sphere)
-		return;
+		return ;
 	if (!*spheres)
 	{
 		*spheres = new_sphere;
-		return;
+		return ;
 	}
 	last = *spheres;
 	while (last->next)
@@ -49,7 +49,7 @@ void		read_sphere(char **line, t_scene *scene)
 {
 	t_sphere	*new_sphere;
 
-	*line += ELEM_OBJ_LEN;
+	*line += 3;
 	new_sphere = create_sphere(line, scene);
 	add_sphere(&scene->spheres, new_sphere);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:28:02 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/07 13:38:37 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/08 02:40:40 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	scene_init(t_scene *scene)
 	scene->lights = NULL;
 	scene->spheres = NULL;
 	scene->planes = NULL;
+	scene->cyls = NULL;
 
 
 	//scene->objs = NULL;
@@ -34,6 +35,8 @@ void	scene_quit(t_scene *scene)
 	delete_cameras(&scene->cams);
 	delete_lights(&scene->lights);
 	delete_spheres(&scene->spheres);
+	delete_planes(&scene->planes);
+	delete_cyls(&scene->cyls);
 
 	//delete_lstobjects(&scene->objs);
 }

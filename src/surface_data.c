@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:54:15 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/07 13:23:01 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 00:19:04 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ t_color	add_amb(t_scene *s, t_color point)
 t_color	get_surface_data(t_scene *scene, t_hit *p)
 {
 	t_color	color;
-	//t_ray	shadow;
+//	t_color	auxcolor;
 	t_light	*light;
-	//t_vec3	light_dir;
 
 	light = scene->lights;
-
+//	auxcolor = (t_color){0, 0, 0};
 	color = add_amb(scene, p->color);
 	while (light)
 	{
@@ -44,17 +43,18 @@ t_color	get_surface_data(t_scene *scene, t_hit *p)
 		if (!shadows(scene, &p->shadow_ray, light->pos))
 			color = add_color(color, illuminate(light, p));
 
-
+//		auxcolor = add_color(auxcolor, color);
 		light = light->next;
 	}
 	check_rgb_color(&color);
+
 	return (color);
 }
 t_color	illuminate(t_light *light, t_hit *p)
 {
 	t_color	color;
 	double	diffuse;
-	//double	specular;
+	double	specular;
 	double	kd;
 
 	diffuse = dot_vec3(p->light, p->normal);
@@ -62,10 +62,12 @@ t_color	illuminate(t_light *light, t_hit *p)
 		kd = 0;
 	else
 		kd = light->lum;
+	specular = pow(fmax(diffuse, 0.0), 50);
 								// aqui añadir speecular
-	color.r = kd * light->color.r * (p->color.r * diffuse / 255);
-	color.g = kd * light->color.g * (p->color.g * diffuse / 255);
-	color.b = kd * light->color.b * (p->color.b * diffuse / 255);
+	color.r = kd * light->color.r * (p->color.r * diffuse / 255 + specular);
+	color.g = kd * light->color.g * (p->color.g * diffuse / 255 + specular);
+	color.b = kd * light->color.b * (p->color.b * diffuse / 255 + specular);
+	//check_rgb_color(&color);
 	return (color);
 }
 

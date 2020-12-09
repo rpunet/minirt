@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:54:35 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/08 00:55:15 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/08 21:49:50 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,18 @@ void	cast_ray(t_ray *ray, t_scene *scene)
 		render_sphere(ray, scene, (t_sphere *)objs);
 		objs = ((t_sphere *)objs)->next;
 	}
-/* 	objs = scene->planes;
+ 	objs = scene->planes;
 	while (objs)
 	{
 		render_plane(ray, scene, (t_plane *)objs);
 		objs = ((t_plane *)objs)->next;
-	} */
+	}
+	objs = scene->cyls;
+	while (objs)
+	{
+		render_cyl(ray, scene, (t_cyl *)objs);
+		objs = ((t_cyl *)objs)->next;
+	}
 }
 
 void	render_sphere(t_ray *ray, t_scene *scene, t_sphere *sphere)
@@ -147,7 +153,7 @@ void	save_pixel(char **buffer, t_color color)
 	(*buffer)++;
 	**buffer = (char)floor(color.r);
 	(*buffer)++;
-	(*buffer)++;
+	(*buffer)++;						// ------- (*buffer) + 2 ??
 
 }
 /*{
