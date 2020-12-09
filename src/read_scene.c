@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/08 02:42:55 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 03:00:39 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	read_element(char **line, t_scene *scene)
 		read_plane(line, scene);
 	else if (!ft_strncmp(*line, "cy ", 3))
 		read_cyl(line, scene);
+	else if (!ft_strncmp(*line, "sq ", 3))
+		read_square(line, scene);
+	else if (!ft_strncmp(*line, "tr ", 3))
+		read_triangle(line, scene);
 	else if (**line != EMPTY_LINE_GNL)  // para que de error en líneas vacias con alguna letra
 		exit_error_msg(SCENE_FORMAT_ERR, scene);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:44:52 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/04 21:58:39 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 03:14:41 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	read_resolution(char **line, t_scene *scene)
 	scene->res.declared = 1;
 	*line += 2;
 	scene->res.width = get_int(line, scene);
+	if (scene->res.width > 1000)
+		scene->res.width = 1000;
 	scene->res.height = get_int(line, scene);
+	if (scene->res.height > 1000)
+		scene->res.height = 1000;
 	skip_blanks(line);
 	if (**line == EMPTY_LINE_GNL)
 		return ;

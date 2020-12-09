@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/07 13:38:45 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 03:03:13 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct	s_ray
 	double	t;
 	t_color	color;
 	//t_vec3	hit_p;
-	t_vec3	normal;
+	//t_vec3	normal;
 }				t_ray;
 
 typedef struct	s_res
@@ -113,10 +113,36 @@ typedef struct		s_sphere
 typedef struct		s_plane
 {
 	t_vec3			point;
-	t_vec3			dir;
+	t_vec3			n_dir;
 	t_color			color;
 	struct s_plane	*next;
 }					t_plane;
+
+typedef struct		s_square{
+	t_vec3			center;
+	t_vec3			n_dir;
+	double			side;
+	t_color			color;
+	struct s_square	*next;
+}					t_square;
+
+typedef struct			s_triangle{
+	t_vec3				a;
+	t_vec3				b;
+	t_vec3				c;
+	t_color				color;
+	struct s_triangle	*next;
+}						t_triangle;
+
+typedef struct		s_cyl
+{
+	t_vec3			point;
+	t_vec3			n_vec;
+	double			radius;
+	double			h;
+	t_color			color;
+	struct s_cyl	*next;
+}					t_cyl;
 
 typedef struct	 s_hit
 {
@@ -125,6 +151,8 @@ typedef struct	 s_hit
 	t_vec3		light;
 	t_ray		shadow_ray;
 	t_color		color;
+	double		cyl_m;
+	t_vec3		cyl_center;
 }				t_hit;
 
 
@@ -149,6 +177,9 @@ typedef struct	s_scene
 //	t_lstobj	*objs;
 	t_sphere	*spheres;
 	t_plane		*planes;
+	t_cyl		*cyls;
+	t_square	*squares;
+	t_triangle		*triangles;
 }				t_scene;
 
 typedef struct 		s_img

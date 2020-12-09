@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 13:23:12 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/09 01:07:30 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 02:50:44 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,31 @@ int	shadows(t_scene *scene, t_ray *shadow_ray, t_vec3 light_pos)
 			if (block_light(shadow_ray, light_pos))
 				return (1);
 		obj = ((t_cyl *)obj)->next;
+	}
+	obj = scene->squares;
+	while (obj)
+	{
+		if ((shadow_ray->t = intersect_square(shadow_ray,(t_square *)obj)))
+			if (block_light(shadow_ray, light_pos))
+				return (1);
+		obj = ((t_square *)obj)->next;
+	}
+	return (0);
+}
+
+double	intersect_square(t_ray *ray, t_square *square)
+{
+	double	t;
+	t_hit	p;
+	t_plane	pl_sq;
+
+	pl_sq.point = square->center;
+	pl_sq.n_dir = square->n_dir;
+	if ((t = intersect_plane(ray, &pl_sq)))
+	{
+		p.point = add_vec3(ray->origin, esc_vec3(t, ray->dir));
+		if (in_square(square, p.point))
+			return (t);
 	}
 	return (0);
 }

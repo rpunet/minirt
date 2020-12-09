@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:54:35 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/08 21:49:50 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/09 03:07:33 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,18 @@ void	cast_ray(t_ray *ray, t_scene *scene)
 	{
 		render_cyl(ray, scene, (t_cyl *)objs);
 		objs = ((t_cyl *)objs)->next;
+	}
+	objs = scene->squares;
+	while (objs)
+	{
+		render_square(ray, scene, (t_square *)objs);
+		objs = ((t_square *)objs)->next;
+	}
+	objs = scene->triangles;
+	while (objs)
+	{
+		render_triangle(ray, scene, (t_triangle *)objs);
+		objs = ((t_triangle *)objs)->next;
 	}
 }
 
