@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 20:39:49 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 22:07:33 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		scene_quit(t_scene *scene);
 */
 
 void		read_element(char **line, t_scene *scene);
+void		check_scene_values(t_scene *scene);
 void		read_resolution(char **line, t_scene *scene);
 void		read_ambient(char **line, t_scene *scene);
 

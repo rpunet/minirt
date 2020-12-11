@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 20:09:46 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 22:13:13 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef enum	e_error{
 	SCENE_FORMAT_ERR,
 	RES_DECLARED,
 	AMB_DECLARED,
+	NO_CAM_ERR,
 	VALUE_RANGE_ERR,
 	RGB_RANGE_ERR,
 	VEC_RANGE_ERR,

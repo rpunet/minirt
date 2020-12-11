@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:44:52 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 17:32:19 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 22:10:19 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	read_resolution(char **line, t_scene *scene)
 	if (scene->res.height > 1000)
 		scene->res.height = 1000;
 	scene->res.ratio = (double)scene->res.width / (double)scene->res.height;
+	if (scene->res.ratio <= 0)
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
 	skip_blanks(line);
 	if (**line == EMPTY_LINE_GNL)
 		return ;

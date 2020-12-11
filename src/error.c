@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 16:58:03 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 22:14:29 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*g_error[] =
 	"Invalid scene file format\n",
 	"Invalid scene: Resolution must be declared only once\n",
 	"Invalid scene: Ambient light must be declared only once\n",
+	"Invalid scene: Set at least one camera to render a view\n",
 	"Invalid scene: ratio value must be in range [0,1]\n",
 	"Invalid scene: RGB color must be in range [0-255]\n",
 	"Invalid scene: vector values must be in range [-1,1]\n",

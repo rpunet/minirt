@@ -6,11 +6,19 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:39:45 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 17:07:25 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 22:20:35 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	check_scene_values(t_scene *scene)
+{
+	if (!scene->res.declared)
+		exit_error_msg(SCENE_FORMAT_ERR, scene);
+	if (!scene->cam_count)
+		exit_error_msg(NO_CAM_ERR, scene);
+}
 
 void	read_element(char **line, t_scene *scene)
 {
@@ -55,4 +63,5 @@ void	read_scene(char *file, t_scene *scene)
 	}
 	free(line);
 	close(fd);
+	check_scene_values(scene);
 }

@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 02:44:31 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 17:11:52 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/12 00:13:41 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_cyl	*create_cyl(char **line, t_scene *scene)
 	cyl->n_vec = get_vec3(line, scene);
 	if (range_vec3(cyl->n_vec, -1.0, 1.0))
 		exit_error_msg(VEC_RANGE_ERR, scene);
+	normalize_vec3(&cyl->n_vec);
 	cyl->radius = get_double(line, scene) / 2;
 	cyl->h = get_double(line, scene);
 	cyl->color = get_color_vec3(line, scene);
