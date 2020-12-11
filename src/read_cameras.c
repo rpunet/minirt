@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:45:51 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/21 12:10:17 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 20:51:55 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_cam		*create_camera(char **line, t_scene *scene)
 	cam->dir = get_vec3(line, scene);
 	if (range_vec3(cam->dir, -1.0, 1.0))
 		exit_error_msg(VEC_RANGE_ERR, scene);
+	normalize_vec3(&cam->dir);
 	if (ft_isnull_vec3(cam->dir))
 		exit_error_msg(NULL_VEC_ERR, scene);
 	cam->fov = get_double(line, scene);
@@ -53,7 +54,7 @@ t_cam		*create_camera(char **line, t_scene *scene)
 
 void		read_camera(char **line, t_scene *scene)
 {
-	t_cam		*new_cam;
+	t_cam	*new_cam;
 
 	*line += 2;
 	new_cam = create_camera(line, scene);
@@ -77,4 +78,18 @@ void		delete_cameras(t_cam **cams)
 		current = node;
 	}
 	*cams = NULL;
+}
+
+void		next_camera(t_scene *scene)
+{
+	t_cam	*current;
+
+	if (scene->cams->next == NULL)
+	{
+		ft_printf("\r\nNo more cameras: EXIT\n");
+		close_program(scene);
+	}
+	current = scene->cams->next;
+	free(scene->cams);
+	scene->cams = current;
 }

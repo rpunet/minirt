@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 01:15:55 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/09 04:18:20 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:13:09 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_triangle	*create_triangle(char **line, t_scene *scene)
 {
 	t_triangle	*triangle;
 
-	if(!(triangle = malloc(sizeof(t_triangle))))
+	if (!(triangle = malloc(sizeof(t_triangle))))
 		exit_error_msg(DEFAULT_ERR, scene);
 	triangle->a = get_vec3(line, scene);
 	triangle->b = get_vec3(line, scene);
@@ -52,7 +52,7 @@ void		read_triangle(char **line, t_scene *scene)
 	*line += 3;
 	new_triangle = create_triangle(line, scene);
 	add_triangle(&scene->triangles, new_triangle);
-	return;
+	return ;
 }
 
 void		delete_triangles(t_triangle **triangles)
@@ -66,7 +66,7 @@ void		delete_triangles(t_triangle **triangles)
 	while (current)
 	{
 		node = current->next;
-		free (current);
+		free(current);
 		current = node;
 	}
 	*triangles = NULL;

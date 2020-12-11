@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 01:43:27 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/09 02:34:02 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 19:08:45 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	render_square(t_ray *ray, t_scene *scene, t_square *square)
 
 	pl_sq.point = square->center;
 	pl_sq.n_dir = square->n_dir;
-
-
 	if ((t = intersect_plane(ray, &pl_sq)))
 	{
 		if (t < ray->t)
@@ -30,7 +28,8 @@ void	render_square(t_ray *ray, t_scene *scene, t_square *square)
 			if (in_square(square, p.point))
 			{
 				ray->t = t;
-				p.normal = dot_vec3(pl_sq.n_dir, ray->dir) < 0 ? pl_sq.n_dir : esc_vec3(-1, pl_sq.n_dir);				// quiza van al reves xXXXXXXXXXXXXXXXXXXXX ojoXXXXXXXXXXXXXXXXXXXXXOOOO        OJO !!!!!
+				p.normal = dot_vec3(pl_sq.n_dir, ray->dir) < 0 ?
+				pl_sq.n_dir : esc_vec3(-1, pl_sq.n_dir);
 				normalize_vec3(&p.normal);
 				p.color = square->color;
 				ray->color = get_surface_data(scene, &p);
@@ -59,4 +58,3 @@ int		in_square(t_square *square, t_vec3 point)
 		return (1);
 	return (0);
 }
-

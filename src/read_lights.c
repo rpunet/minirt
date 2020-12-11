@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 00:46:47 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/21 12:06:31 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:09:16 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		add_light(t_light **lights, t_light *new_light)
 	if (!*lights)
 	{
 		*lights = new_light;
-		return;
+		return ;
 	}
 	last = *lights;
 	while (last->next)
@@ -49,7 +49,7 @@ t_light		*create_light(char **line, t_scene *scene)
 
 void		read_light(char **line, t_scene *scene)
 {
-	t_light		*new_light;
+	t_light	*new_light;
 
 	*line += 2;
 	new_light = create_light(line, scene);

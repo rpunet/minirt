@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 10:18:15 by rpunet            #+#    #+#             */
-/*   Updated: 2020/09/25 21:13:59 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 19:54:53 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_count_digit(int num)
 	return (count);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	nbr;
 	int				len;

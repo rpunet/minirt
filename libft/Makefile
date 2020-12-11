@@ -6,7 +6,7 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/05 21:22:26 by rpunet            #+#    #+#              #
-#    Updated: 2020/12/09 02:16:59 by rpunet           ###   ########.fr        #
+#    Updated: 2020/12/11 21:06:11 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	@echo "\033[0;31m ---- all cleared! ---- \033[0m"
+	@echo "\033[0;31m ---- libraries cleared! ---- \033[0m"
 
 re: fclean all
 

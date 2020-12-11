@@ -6,7 +6,7 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/01 19:51:56 by rpunet            #+#    #+#              #
-#    Updated: 2020/12/09 03:02:07 by rpunet           ###   ########.fr        #
+#    Updated: 2020/12/11 21:06:29 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ LIBFT_DIR	= libft/
 
 LIBFT_A		= libft/libft.a
 
-SRC_FILES	= main.c scene.c check_args.c read_scene.c read_elements.c read_cameras.c read_lights.c read_sphere.c read_plane.c read_cyl.c read_square.c read_triangle.c load_utils.c error.c render_scene.c render_plane.c render_cyl.c render_square.c render_triangle.c render_utils.c surface_data.c shadows.c
+SRC_FILES	= main.c bmp.c scene.c check_args.c read_scene.c read_elements.c read_cameras.c read_lights.c read_sphere.c read_plane.c read_cyl.c read_square.c read_triangle.c load_utils.c vectors.c vectors_2.c vectors_3.c error.c render_scene.c render_sphere.c render_plane.c render_cyl.c render_square.c render_triangle.c surface_data.c shadows.c
 
 SRC_DIR		= src/
 
-SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))#render_scene.c render_utils.c #
+SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 GREEN		= \033[1;32m
 
@@ -67,10 +67,13 @@ libraries:
 	@echo "$(GREEN)Libraries built$(COLOR_OFF)"
 
 clean:
-
+	@make clean -C $(LIBFT_DIR)
 
 fclean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
+	@echo "\033[0;31m ---- all cleared! ---- \033[0m"
+
 
 re: fclean all
 

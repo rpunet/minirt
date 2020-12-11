@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 01:15:55 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/09 01:31:34 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:12:33 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_square	*create_square(char **line, t_scene *scene)
 {
 	t_square	*square;
 
-	if(!(square = malloc(sizeof(t_square))))
+	if (!(square = malloc(sizeof(t_square))))
 		exit_error_msg(DEFAULT_ERR, scene);
 	square->center = get_vec3(line, scene);
 	square->n_dir = get_vec3(line, scene);
@@ -54,7 +54,7 @@ void		read_square(char **line, t_scene *scene)
 	*line += 3;
 	new_square = create_square(line, scene);
 	add_square(&scene->squares, new_square);
-	return;
+	return ;
 }
 
 void		delete_squares(t_square **squares)
@@ -68,7 +68,7 @@ void		delete_squares(t_square **squares)
 	while (current)
 	{
 		node = current->next;
-		free (current);
+		free(current);
 		current = node;
 	}
 	*squares = NULL;

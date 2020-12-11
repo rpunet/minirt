@@ -6,13 +6,12 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:18:09 by rpunet            #+#    #+#             */
-/*   Updated: 2020/10/21 11:31:16 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 16:58:03 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// podría ser un char[] con los mensajes, y llamar a cada uno con el id del error, pero asi se ve mejor a cual corresponde cada mensaje
 char	*g_error[] =
 {
 	"Invalid arguments. Use format  ./miniRT <scene.rt> [--save]\n\noptions:\n \

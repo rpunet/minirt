@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 02:44:31 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/08 23:31:57 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:11:52 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	add_cyl(t_cyl **cyls, t_cyl *new_cyl)
 {
 	t_cyl	*last;
 
-	if(!cyls || !new_cyl)
+	if (!cyls || !new_cyl)
 		return ;
-	if(!*cyls)
+	if (!*cyls)
 	{
 		*cyls = new_cyl;
 		return ;
@@ -70,7 +70,7 @@ void	delete_cyls(t_cyl **cyls)
 	while (current)
 	{
 		node = current->next;
-		free (current);
+		free(current);
 		current = node;
 	}
 	*cyls = NULL;

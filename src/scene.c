@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:28:02 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/09 04:25:27 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/11 16:57:23 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	scene_init(t_scene *scene)
 {
-	scene->mlx = mlx_init();
 	scene->save_bmp = 0;
 	scene->win = NULL;
 	scene->res.declared = 0;
@@ -27,9 +26,6 @@ void	scene_init(t_scene *scene)
 	scene->cyls = NULL;
 	scene->squares = NULL;
 	scene->triangles = NULL;
-
-
-	//scene->objs = NULL;
 }
 
 void	scene_quit(t_scene *scene)
@@ -41,5 +37,4 @@ void	scene_quit(t_scene *scene)
 	delete_cyls(&scene->cyls);
 	delete_squares(&scene->squares);
 	delete_triangles(&scene->triangles);
-	//delete_lstobjects(&scene->objs);
 }

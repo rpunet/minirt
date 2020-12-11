@@ -17,8 +17,13 @@ void	*mlx_init()
 {
 	t_xvar	*xvar;
 	
-	if (!(xvar = malloc(sizeof(*xvar))) || (xvar->display = XOpenDisplay(""))==0)
-		return ((void *)0);
+	if (!(xvar = malloc(sizeof(*xvar))))
+		return ((void*)0);
+	if ((xvar->display = XOpenDisplay("")) == 0)
+	{
+		free(xvar);
+		return ((void*)0);
+	}
 	xvar->screen = DefaultScreen(xvar->display);
 	xvar->root = DefaultRootWindow(xvar->display);
 	xvar->cmap = DefaultColormap(xvar->display,xvar->screen);
@@ -38,6 +43,7 @@ void	*mlx_init()
 		xvar->cmap = XCreateColormap(xvar->display,xvar->root,
 				 xvar->visual,AllocNone);
 	mlx_int_rgb_conversion(xvar);
+	xvar->end_loop = 0;
 	return (xvar);
 }
 
