@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 01:02:32 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/13 01:52:17 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 01:53:50 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ double	intersect_plane(t_ray *ray, t_plane *plane)
 
 	denom = dot_vec3(ray->dir, plane->n_dir);
 	if (fabs(denom) > 0.00001)
-		t = dot_vec3(sub_vec3(plane->point, ray->origin), plane->n_dir) / denom;
+		t = dot_vec3(sub_vec3(plane->point,
+		ray->origin), plane->n_dir) / denom;
 	if (t >= 0)
 		return (t);
 	else

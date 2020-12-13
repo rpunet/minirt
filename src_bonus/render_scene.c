@@ -41,9 +41,9 @@ void	look_at(t_cam *cam)
 void	set_ray(t_ray *ray, t_scene *scene, double x, double y)
 {
 	ray->dir.x = (2 * ((x + 0.5) / scene->res.width) - 1)
-	* tan(scene->cams->fov / 2 * 3.1415 / 180) * scene->res.ratio;
+	* tan(scene->cams->fov / 2 * M_PI / 180) * scene->res.ratio;
 	ray->dir.y = (1 - 2 * (y + 0.5) / scene->res.height)
-	* tan(scene->cams->fov / 2 * 3.1415 / 180);
+	* tan(scene->cams->fov / 2 * M_PI / 180);
 	ray->dir.z = -1;
 	ray->dir = mult_vec3_mat3x3(ray->dir, scene->cams->cam_to_world);
 	normalize_vec3(&ray->dir);

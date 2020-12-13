@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 22:07:33 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 02:08:04 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,27 @@
 # define MINIRT_DEFINE_H
 
 # define EMPTY_LINE_GNL '\0'
-# define ESC 65307
-# define SPACE 32
-# define CLOSE 33
+
+# if defined(__linux__) || defined(__unix__)
+#  define ESC 65307
+#  define SPACE 32
+#  define CLOSE 33
+#  define LEFT 65361
+#  define RIGHT 65363
+#  define DOWN 65364
+#  define UP 65362
+#  define C 99
+#  define S 115
+
+# elif __APPLE__
+#  define ESC 54
+#  define SPACE 49
+#  define CLOSE 17
+#  define LEFT 123
+#  define RIGHT 124
+#  define DOWN 125
+#  define UP 126
+# endif
 
 /*
 ** main FUNCIONS
@@ -93,6 +111,7 @@ void		set_ray(t_ray *ray, t_scene *scene, double x, double y);
 void		save_pixel(char **buffer, t_color color);
 
 void		cast_ray(t_ray *ray, t_scene *scene);
+void		cast_ray_2(t_ray *ray, t_scene *scene);
 void		render_sphere(t_ray *ray, t_scene *scene, t_sphere *sphere);
 double		intersect_sphere(t_ray *ray, t_sphere *sphere);
 void		render_plane(t_ray *ray, t_scene *scene, t_plane *plane);
@@ -109,7 +128,7 @@ int			in_triangle(t_triangle *triangle, t_vec3 point, t_vec3 normal);
 int			edge_side(t_vec3 v1, t_vec3 v0, t_vec3 p, t_vec3 n);
 
 t_color		get_surface_data(t_scene *scene, t_hit *p);
-t_color		illuminate(t_light *light, t_hit *p);
+t_color		illuminate(t_light *light, t_hit *p, int opt_specular);
 t_color		add_amb(t_scene *s, t_color point);
 t_color		add_color(t_color a, t_color b);
 void		check_rgb_color(t_color *color);
@@ -118,10 +137,12 @@ void		check_rgb_color(t_color *color);
 ** shade FUNCIONS
 */
 
-int			shadows(t_scene *scene, t_ray *shadow_ray, t_vec3 light_pos);
+int			shadows_1(t_scene *scene, t_ray *shadow_ray, t_vec3 light_pos);
+int			shadows_2(t_scene *scene, t_ray *shadow_ray, t_vec3 light_pos, void *obj);
 double		intersect_square(t_ray *ray, t_square *square);
 double		intersect_triangle(t_ray *ray, t_triangle *triangle);
 double		intersect_cyl(t_ray *ray, t_cyl *cyl);
+int			block_light(t_ray *shadow_ray, t_vec3 light_pos);
 
 /*
 ** auxiliar FUNCTIONS
@@ -155,8 +176,16 @@ t_vec3		mult_vec3_mat3x3(t_vec3 v, t_mat3x3 m);
 ** others
 */
 
+void		sepia_filter(t_color *color);
+void		stereoscopy_filter(t_color *color);
 int			key_hook(int keycode, t_scene *scene);
 int			close_program(t_scene *scene);
 void		exit_error_msg(t_error id, t_scene *scene);
+void		push_image(t_scene *scene);
+void		move_element(int keycode, t_scene *scene);
+void		move_x_pos(t_scene *scene, int key);
+void		move_x_neg(t_scene *scene, int key);
+void		move_y_pos(t_scene *scene, int key);
+void		move_y_neg(t_scene *scene, int key);
 
 #endif

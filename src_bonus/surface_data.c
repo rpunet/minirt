@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:54:15 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/13 02:00:48 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 01:48:25 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ t_color	get_surface_data(t_scene *scene, t_hit *p)
 			color = add_color(color, illuminate(light, p, scene->specular));
 		light = light->next;
 	}
+	if (scene->sepia)
+		sepia_filter(&color);
+	else if (scene->stereoscopy)
+		stereoscopy_filter(&color);
 	check_rgb_color(&color);
 	return (color);
 }

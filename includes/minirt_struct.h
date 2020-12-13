@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:21:14 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/11 22:13:13 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 01:06:03 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,10 @@ typedef struct	s_hit{
 
 typedef struct	s_scene{
 	int			save_bmp;
+	int			specular;
+	int			sepia;
+	int			stereoscopy;
+	int			obj_id;
 	void		*mlx;
 	void		*win;
 	char		*img_address;
