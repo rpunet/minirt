@@ -6,7 +6,7 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/01 19:51:56 by rpunet            #+#    #+#              #
-#    Updated: 2020/12/13 02:04:42 by rpunet           ###   ########.fr        #
+#    Updated: 2020/12/13 23:34:56 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ NAME_BONUS	:=	miniRT_bonus
 OS			:= $(shell uname)
 
 CC			= gcc -g -fsanitize=address
+
 CFLAGS		= -Wall -Wextra -Werror
 
 INCLUDES	= -Iincludes/ -Ilibft/includes -I$(MINILIBX_DIR)
 
-#INCLUDES_BONUS	= -Iincludes_bonus/ -Ilibft/includes -I$(MINILIBX_DIR)
 
 LIBFT_DIR	= libft/
 
@@ -47,13 +47,9 @@ RED			= \033[1;31m
 
 COLOR_OFF	= \033[0m
 
-#OBJ			= $(addprefix $())
-
 ifeq ($(OS), Linux)
 	MINILIBX_DIR = lib/minilibx-linux
 	MLXFLAG = -lm -lbsd -lX11 -lXext
-
-# ver si hace falta el flag -lbsd
 endif
 ifeq ($(OS), Darwin)
 	MINILIBX_DIR = lib/minilibx_opengl_20191021

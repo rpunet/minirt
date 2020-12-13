@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 21:50:18 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/13 01:38:55 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 23:32:45 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	display_scene(t_scene *scene)
 	&img.bbp, &img.size_line, &img.endian);
 	mlx_hook(scene->win, CLOSE, 0L, close_program, scene);
 	mlx_key_hook(scene->win, key_hook, scene);
+	mlx_expose_hook(scene->win, refresh, scene);
 	push_image(scene);
 	mlx_loop(scene->mlx);
 }

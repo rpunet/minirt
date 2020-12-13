@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:53:10 by rpunet            #+#    #+#             */
-/*   Updated: 2020/12/13 02:08:04 by rpunet           ###   ########.fr       */
+/*   Updated: 2020/12/13 23:26:48 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ t_vec3		mult_vec3_mat3x3(t_vec3 v, t_mat3x3 m);
 void		sepia_filter(t_color *color);
 void		stereoscopy_filter(t_color *color);
 int			key_hook(int keycode, t_scene *scene);
+int			refresh(t_scene *scene);
 int			close_program(t_scene *scene);
 void		exit_error_msg(t_error id, t_scene *scene);
 void		push_image(t_scene *scene);
