@@ -1,4 +1,4 @@
 # minirt
 Graphic project miniRT raytracer for 42 School Madrid
 
-https://raw.githubusercontent.com/rpunet/minirt/assets
+https://raw.github.com/rpunet/minirt/assets
