@@ -1,4 +1,4 @@
 # minirt
 Graphic project miniRT raytracer for 42 School Madrid
 
-![Screenshot](scene.png) 
+![scene](scene.png) 
