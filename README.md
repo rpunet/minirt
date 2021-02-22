@@ -9,6 +9,6 @@ Render different scenes just by creating the executable and launching it along t
 
 *./miniRT scenes/example.rt"*
 
-In case of invalid scenes or errors, follow program instructions.
+During execution, you will finde instructions to move objects or change cameras in real time. In case of invalid scenes or errors, follow program instructions.
 
 ![Screenshot](scene.png) 
